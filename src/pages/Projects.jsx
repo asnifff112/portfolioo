@@ -53,7 +53,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="min-h-[120vh] flex flex-col justify-center items-center text-center 
+      className="min-h-screen flex flex-col justify-center items-center text-center 
                  bg-gradient-to-b from-[#0b132b] via-[#1c2541] to-[#3a506b] 
                  text-white px-4 sm:px-6 py-24 relative"
     >
@@ -75,8 +75,8 @@ const Projects = () => {
         className="w-20 sm:w-24 h-[3px] bg-sky-400 mb-12 rounded-full"
       />
 
-      {/* Arrow Buttons */}
-      <div className="absolute left-2 sm:left-6 top-1/2 transform -translate-y-1/2 z-10 hidden md:flex">
+      {/* Arrow Buttons - show only on desktop */}
+      <div className="hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 z-10">
         <button
           onClick={() => scroll("left")}
           className="p-3 bg-white/10 border border-white/20 rounded-full text-sky-300 
@@ -86,7 +86,7 @@ const Projects = () => {
         </button>
       </div>
 
-      <div className="absolute right-2 sm:right-6 top-1/2 transform -translate-y-1/2 z-10 hidden md:flex">
+      <div className="hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 z-10">
         <button
           onClick={() => scroll("right")}
           className="p-3 bg-white/10 border border-white/20 rounded-full text-sky-300 
@@ -96,21 +96,23 @@ const Projects = () => {
         </button>
       </div>
 
-      {/* Projects Scroll Container */}
+      {/* Projects Container */}
       <div
         ref={scrollRef}
-        className="flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth px-2 sm:px-10 w-full max-w-6xl snap-x snap-mandatory"
+        className="w-full max-w-6xl flex flex-col sm:flex-row sm:overflow-x-auto sm:scroll-smooth sm:gap-6
+                   sm:snap-x sm:snap-mandatory sm:px-4 md:px-8 no-scrollbar"
       >
         {projectList.map((project) => (
           <motion.div
             key={project.id}
-            className="min-w-[260px] sm:min-w-[320px] md:min-w-[380px] lg:min-w-[400px] 
-                       bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl 
-                       overflow-hidden shadow-[0_0_25px_rgba(0,0,0,0.3)] 
-                       hover:scale-105 transition-transform duration-300 flex-shrink-0 snap-start"
             whileHover={{ scale: 1.05 }}
+            className="w-full sm:min-w-[300px] md:min-w-[350px] lg:min-w-[380px] 
+                       bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden 
+                       shadow-[0_0_25px_rgba(0,0,0,0.3)] transition-transform duration-300 mb-6 sm:mb-0
+                       flex-shrink-0 snap-start hover:shadow-[0_0_30px_rgba(56,189,248,0.3)]"
           >
-            <div className="w-full h-44 sm:h-52 md:h-60 overflow-hidden">
+            {/* Image */}
+            <div className="w-full h-52 sm:h-56 md:h-60 overflow-hidden">
               <img
                 src={project.img}
                 alt={project.title}
@@ -118,16 +120,19 @@ const Projects = () => {
               />
             </div>
 
-            <div className="p-4 sm:p-6 text-left">
+            {/* Content */}
+            <div className="p-5 sm:p-6 text-left">
               <h3 className="text-xl sm:text-2xl font-semibold text-sky-300 mb-2 sm:mb-3">
                 {project.title}
               </h3>
-              <p className="text-white/80 mb-4 sm:mb-6 text-sm sm:text-base">{project.desc}</p>
+              <p className="text-white/80 mb-4 sm:mb-6 text-sm sm:text-base">
+                {project.desc}
+              </p>
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-4 sm:px-6 py-2 bg-sky-500/20 border border-sky-400/30 
+                className="inline-block px-5 py-2 bg-sky-500/20 border border-sky-400/30 
                            text-sky-200 rounded-full hover:bg-sky-500/30 hover:scale-105 transition-all"
               >
                 View Project
