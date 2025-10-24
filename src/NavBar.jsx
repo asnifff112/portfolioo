@@ -46,6 +46,7 @@ const Navbar = () => {
     </div>
   );
 
+  // 🔹 Redesigned Buttons with gradient, hover glow & click feedback
   const NavLink = ({ link, mobile = false }) => (
     <Link
       to={link.toLowerCase().replace(" ", "")}
@@ -53,13 +54,13 @@ const Navbar = () => {
       duration={500}
       offset={-80}
       spy={true}
-      activeClass="text-sky-300"
+      activeClass="!bg-gradient-to-r !from-sky-400 !to-cyan-500 !text-white shadow-lg shadow-sky-400/30 scale-105"
       className={`relative font-semibold transition-all duration-300 ease-out cursor-pointer
-                 ${
-                   mobile
-                     ? "px-6 py-3 text-sm border border-white/20 rounded-full bg-white/10 backdrop-blur-md text-white/90 hover:scale-105 hover:text-white hover:border-white/40 hover:shadow-lg w-full text-center"
-                     : "px-3 sm:px-4 lg:px-6 py-2 text-xs sm:text-sm bg-white/95 backdrop-blur-sm rounded-2xl border border-white text-gray-700 hover:scale-105 hover:bg-white hover:shadow-lg hover:text-gray-900"
-                 }`}
+        ${
+          mobile
+            ? "px-8 py-3 text-sm border border-white/20 rounded-full bg-gradient-to-r from-[#1e3a8a]/70 to-[#3b82f6]/70 text-white/90 hover:from-sky-500 hover:to-cyan-400 hover:text-white hover:scale-105 hover:shadow-[0_0_15px_rgba(56,189,248,0.5)] active:scale-95 w-full text-center"
+            : "px-5 sm:px-6 py-2.5 text-sm rounded-full font-semibold bg-gradient-to-r from-[#1e3a8a]/80 to-[#3b82f6]/80 text-white border border-sky-400/30 hover:from-sky-500 hover:to-cyan-400 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] hover:scale-105 active:scale-95"
+        }`}
       onClick={() => setMenuOpen(false)}
     >
       {link.toUpperCase()}
@@ -81,7 +82,6 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <NavLink key={link} link={link} />
           ))}
-          {/* Desktop Contact Link */}
           <NavLink link="Contact" />
         </div>
 
@@ -98,8 +98,8 @@ const Navbar = () => {
             smooth={true}
             duration={500}
             offset={-80}
-            className="p-2 w-10 h-10 flex items-center justify-center bg-sky-500/20 border border-sky-400/30 
-                       text-white rounded-full hover:bg-sky-500/30 hover:scale-110 transition-all duration-300 cursor-pointer"
+            className="p-2 w-10 h-10 flex items-center justify-center bg-gradient-to-r from-sky-500/30 to-cyan-400/30 border border-sky-400/30 
+                       text-white rounded-full hover:from-sky-500 hover:to-cyan-400 hover:scale-110 hover:shadow-[0_0_15px_rgba(56,189,248,0.5)] transition-all duration-300 cursor-pointer"
           >
             <FaUserCircle size={18} />
           </Link>
@@ -119,11 +119,12 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden bg-gradient-to-b from-[#0f172a]/95 to-[#1c2541]/95 backdrop-blur-2xl border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-            {/* Mobile Navigation Links (excluding Contact) */}
+            {/* Mobile Navigation Links */}
             <div className="flex flex-col items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
               {navLinks.map((link) => (
                 <NavLink key={link} link={link} mobile={true} />
               ))}
+              <NavLink link="Contact" mobile={true} />
             </div>
 
             {/* Mobile Social Icons */}

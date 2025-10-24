@@ -14,8 +14,8 @@ const Skills = () => {
   const skills = [
     { name: "HTML5", icon: <FaHtml5 className="text-orange-500" />, level: "Advanced" },
     { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" />, level: "Advanced" },
-    { name: "JavaScript", icon: <FaJsSquare className="text-yellow-400" />, level: "Intermediate" },
-    { name: "React.js", icon: <FaReact className="text-sky-400" />, level: "Intermediate" },
+    { name: "JavaScript", icon: <FaJsSquare className="text-yellow-400" />, level: "Advanced" },
+    { name: "React.js", icon: <FaReact className="text-sky-400" />, level: "Advanced" },
     { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-400" />, level: "Advanced" },
     { name: "Redux Toolkit", icon: <SiRedux className="text-purple-500" />, level: "Intermediate" },
     { name: "Framer Motion", icon: <SiFramer className="text-pink-500" />, level: "Intermediate" },
