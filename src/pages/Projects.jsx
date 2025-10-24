@@ -128,15 +128,7 @@ const Projects = () => {
               <p className="text-white/80 mb-4 sm:mb-6 text-sm sm:text-base">
                 {project.desc}
               </p>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-5 py-2 bg-sky-500/20 border border-sky-400/30 
-                           text-sky-200 rounded-full hover:bg-sky-500/30 hover:scale-105 transition-all"
-              >
-                View Project
-              </a>
+              
             </div>
           </motion.div>
         ))}
