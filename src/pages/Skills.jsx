@@ -61,7 +61,7 @@ const Skills = () => {
                        flex flex-col items-center text-center shadow-[0_0_20px_rgba(0,0,0,0.3)]"
           >
             <div className="text-5xl mb-3">{skill.icon}</div>
-            <h3 className="text-lg font-semibold text-white mb-1">
+            <h3 className="text-lg font-semibold text-white mb-1">  
               {skill.name}
             </h3>
             <p className="text-sm text-white/70">{skill.level}</p>

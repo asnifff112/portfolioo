@@ -15,7 +15,7 @@ const Home = () => {
       {/* Background Blur Circles */}
       <div className="absolute top-5 left-5 w-40 h-40 sm:w-48 sm:h-48 lg:w-64 lg:h-64 
                       bg-blue-500/20 rounded-full blur-2xl sm:blur-3xl animate-pulse 
-                      pointer-events-none" /> {/* ✅ prevents accidental scroll/interaction */}
+                      pointer-events-none" /> 
       <div className="absolute bottom-5 right-5 w-40 h-40 sm:w-48 sm:h-48 lg:w-64 lg:h-64 
                       bg-cyan-400/20 rounded-full blur-2xl sm:blur-3xl animate-pulse 
                       pointer-events-none" />
