@@ -123,6 +123,7 @@ const Projects = () => {
             {/* Content */}
             <div className="p-5 sm:p-6 text-left">
               <h3 className="text-xl sm:text-2xl font-semibold text-sky-300 mb-2 sm:mb-3">
+                
                 {project.title}
               </h3>
               <p className="text-white/80 mb-4 sm:mb-6 text-sm sm:text-base">
@@ -135,7 +136,7 @@ const Projects = () => {
       </div>
     </section>
   );
-  
+
 };
 
 export default Projects;
