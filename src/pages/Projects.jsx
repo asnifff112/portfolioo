@@ -66,7 +66,7 @@ const Projects = () => {
       >
         My Projects
       </motion.h2>
-
+ 
       {/* Underline */}
       <motion.div
         initial={{ scaleX: 0 }}
@@ -74,13 +74,13 @@ const Projects = () => {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="w-20 sm:w-24 h-[3px] bg-sky-400 mb-12 rounded-full"
       />
-
+ 
       {/* Arrow Buttons - show only on desktop */}
       <div className="hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 z-10">
         <button
           onClick={() => scroll("left")}
           className="p-3 bg-white/10 border border-white/20 rounded-full text-sky-300 
-                     hover:bg-white/20 hover:scale-110 transition-all duration-300"
+                     hover:bg-white/20 hover:scale-110 transition-all duration-300" 
         >
           <FaArrowLeft size={20} />
         </button>
@@ -93,7 +93,7 @@ const Projects = () => {
                      hover:bg-white/20 hover:scale-110 transition-all duration-300"
         >
           <FaArrowRight size={20} />
-        </button>
+        </button> 
       </div>
 
       {/* Projects Container */}

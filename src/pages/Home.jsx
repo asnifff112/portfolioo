@@ -1,123 +1,120 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import { FaArrowRight, FaDownload } from "react-icons/fa";
 import { Link } from "react-scroll";
 import asnifImg from "../assets/asnif.jpg";
 
 const Home = () => {
+
+  const titleRef = useRef(null);
+  const paraRef = useRef(null);
+  const imageRef = useRef(null);
+  const buttonRef = useRef([]);
+
+  useEffect(() => {
+
+    const tl = gsap.timeline();
+
+    tl.from(titleRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    })
+    .from(paraRef.current, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    }, "-=0.4")
+    .from(imageRef.current, {
+      scale: 0.7,
+      opacity: 0,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+    }, "-=0.4")
+    .from(buttonRef.current, {
+      y: 20,
+      opacity: 0,
+      stagger: 0.2,
+      duration: 0.6,
+      ease: "power2.out",
+    }, "-=0.3");
+
+  }, []);
+
   return (
     <section
       id="home"
       className="min-h-screen flex flex-col justify-center items-center text-center relative 
-                 overflow-x-hidden  /* ✅ prevents horizontal scroll on mobile */
-                 bg-gradient-to-b from-[#0b132b] via-[#1c2541] to-[#3a506b] 
-                 text-white px-4 sm:px-6 lg:px-8 py-24"
+      overflow-x-hidden bg-gradient-to-b from-[#0b132b] via-[#1c2541] to-[#3a506b] 
+      text-white px-4 sm:px-6 lg:px-8 py-24"
     >
-      {/* Background Blur Circles */}
-      <div className="absolute top-5 left-5 w-40 h-40 sm:w-48 sm:h-48 lg:w-64 lg:h-64 
-                      bg-blue-500/20 rounded-full blur-2xl sm:blur-3xl animate-pulse 
-                      pointer-events-none" /> 
-      <div className="absolute bottom-5 right-5 w-40 h-40 sm:w-48 sm:h-48 lg:w-64 lg:h-64 
-                      bg-cyan-400/20 rounded-full blur-2xl sm:blur-3xl animate-pulse 
-                      pointer-events-none" />
 
-      {/* Hero Text */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="w-full max-w-6xl mx-auto"
-      >
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 tracking-tight sm:tracking-wide drop-shadow-lg">
+      {/* Background blur */}
+      <div className="absolute top-10 left-5 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl animate-pulse" />
+      <div className="absolute bottom-10 right-5 w-40 h-40 bg-cyan-400/20 rounded-full blur-2xl animate-pulse" />
+
+      {/* Text */}
+      <div className="max-w-6xl mx-auto">
+        <h1
+          ref={titleRef}
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
+        >
           Hi, I'm <span className="text-sky-300">Asnif</span>
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-base sm:text-lg lg:text-xl xl:text-2xl 
-                     max-w-xs sm:max-w-md lg:max-w-2xl xl:max-w-3xl 
-                     mx-auto text-white/80 leading-relaxed sm:leading-loose mb-8 sm:mb-10 lg:mb-12"
+        <p
+          ref={paraRef}
+          className="text-lg max-w-2xl mx-auto text-white/80 mb-10"
         >
-          A passionate <span className="text-sky-200 font-semibold">Frontend Developer</span> who loves building 
-          beautiful, functional, and modern web experiences using React, Tailwind, and more.
-        </motion.p>
-      </motion.div>
+          A passionate <span className="text-sky-200">Frontend Developer</span> who loves building 
+          modern web experiences using React, Tailwind & GSAP.
+        </p>
+      </div>
 
-      {/* 🖼️ Photo Section */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="mb-10 sm:mb-12 lg:mb-16"
-      >
-        <div className="w-40 h-40 sm:w-52 sm:h-52 lg:w-64 lg:h-64 rounded-full overflow-hidden 
-                        border-4 border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.5)] 
-                        hover:scale-105 transition-transform duration-300 mx-auto">
-          <img
-            src={asnifImg}
-            alt="Asnif"
-            className="w-full h-full object-cover"
-          />
+      {/* Image */}
+      <div ref={imageRef} className="mb-12">
+        <div className="w-52 h-52 rounded-full overflow-hidden border-4 border-white/30 shadow-lg hover:scale-105 transition">
+          <img src={asnifImg} alt="Asnif" className="w-full h-full object-cover" />
         </div>
-      </motion.div>
+      </div>
 
       {/* Buttons */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-        className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 lg:gap-6 
-                   w-full max-w-4xl mx-auto"
-      >
-        {/* View My Work */}
+      <div className="flex flex-col sm:flex-row gap-4">
+
         <Link
+          ref={(el) => (buttonRef.current[0] = el)}
           to="projects"
           smooth={true}
           duration={500}
           offset={-70}
-          className="relative w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 
-                     text-sm sm:text-base font-semibold text-white border border-white/20 
-                     rounded-full bg-white/10 backdrop-blur-md overflow-hidden 
-                     transition-all duration-300 ease-out
-                     hover:scale-105 sm:hover:scale-110 hover:shadow-[0_0_25px_rgba(0,0,0,0.6)] 
-                     hover:border-white/40 flex items-center justify-center gap-2 cursor-pointer"
+          className="px-8 py-3 border rounded-full cursor-pointer flex gap-2 hover:scale-105 transition"
         >
-          View My Work <FaArrowRight className="text-sky-200" />
+          View My Work <FaArrowRight />
         </Link>
 
-        {/* Contact Me */}
         <Link
+          ref={(el) => (buttonRef.current[1] = el)}
           to="contact"
           smooth={true}
           duration={500}
           offset={-70}
-          className="relative w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 
-                     text-sm sm:text-base font-semibold text-sky-200 border border-sky-400/30 
-                     rounded-full bg-sky-400/10 backdrop-blur-md overflow-hidden 
-                     transition-all duration-300 ease-out
-                     hover:bg-sky-400/20 hover:scale-105 sm:hover:scale-110 
-                     hover:shadow-[0_0_25px_rgba(0,0,0,0.6)]
-                     flex items-center justify-center gap-2 cursor-pointer"
+          className="px-8 py-3 border rounded-full cursor-pointer hover:scale-105 transition"
         >
           Contact Me
         </Link>
 
-        {/* Download CV */}
         <a
+          ref={(el) => (buttonRef.current[2] = el)}
           href="/Asnif.pdf"
           download
-          className="relative w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 
-                     text-sm sm:text-base font-semibold text-white border border-white/20 
-                     rounded-full bg-gradient-to-r from-sky-500/30 to-sky-400/10 
-                     backdrop-blur-md overflow-hidden transition-all duration-300 ease-out
-                     hover:scale-105 sm:hover:scale-110 
-                     hover:shadow-[0_0_25px_rgba(0,0,0,0.6)] hover:border-white/40 
-                     flex items-center justify-center gap-2"
+          className="px-8 py-3 border rounded-full cursor-pointer flex gap-2 hover:scale-105 transition"
         >
-          <FaDownload className="text-sky-300" /> Download CV
+          <FaDownload /> Download CV
         </a>
-      </motion.div>
+
+      </div>
     </section>
   );
 };
